@@ -9,7 +9,11 @@ import StyleDictionary from 'style-dictionary';
 register(StyleDictionary);
 
 const sd = new StyleDictionary({
-  source: ['tokens.json'],
+  source: [
+    'tokensfigma/core.json',
+    'tokensfigma/light.json',
+    'tokensfigma/theme.json',
+  ],
   preprocessors: ['tokens-studio'],
   platforms: {
     css: {

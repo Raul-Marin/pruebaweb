@@ -3,273 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Design Tokens - Live Preview</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Tokens Figma</title>
   <link rel="stylesheet" href="css/variables.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      /* Fallback si css/variables.css no existe (ej. antes del build) */
-      --global-colors-primary: #6366f1;
-      --global-colors-secondary: #8b5cf6;
-      --global-colors-background: #0f172a;
-      --global-colors-surface: #1e293b;
-      --global-colors-text: #f8fafc;
-      --global-colors-text-muted: #94a3b8;
-      --global-spacing-xs: 4px;
-      --global-spacing-sm: 8px;
-      --global-spacing-md: 16px;
-      --global-spacing-lg: 24px;
-      --global-spacing-xl: 32px;
-      --global-radius-sm: 4px;
-      --global-radius-md: 8px;
-      --global-radius-lg: 12px;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--global-colors-background);
-      color: var(--global-colors-text);
+      font-family: var(--font-families-body), sans-serif;
+      font-size: var(--font-sizes-body);
+      background: var(--bg-default);
+      color: var(--fg-default);
       min-height: 100vh;
-      line-height: 1.6;
+      padding: var(--spacing-xl);
+      line-height: var(--line-heights-body);
     }
 
-    .container {
-      max-width: 900px;
+    .page {
+      max-width: 480px;
       margin: 0 auto;
-      padding: var(--global-spacing-xl);
-    }
-
-    header {
-      text-align: center;
-      padding: var(--global-spacing-xl) 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
     h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--global-colors-primary), var(--global-colors-secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-family: var(--font-families-heading), sans-serif;
+      font-size: var(--font-sizes-h2);
+      font-weight: var(--font-weights-heading-bold);
+      margin-bottom: var(--spacing-md);
     }
 
-    .subtitle {
-      color: var(--global-colors-text-muted);
-      font-size: 0.95rem;
-      margin-top: var(--global-spacing-sm);
+    p {
+      color: var(--fg-muted);
+      margin-bottom: var(--spacing-lg);
     }
 
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--global-spacing-sm);
-      margin-top: var(--global-spacing-md);
-      padding: var(--global-spacing-sm) var(--global-spacing-md);
-      background: var(--global-colors-surface);
-      border-radius: var(--global-radius-md);
-      font-size: 0.85rem;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #22c55e;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    section {
-      margin: var(--global-spacing-xl) 0;
-    }
-
-    h2 {
-      font-size: 1.25rem;
-      color: var(--global-colors-text-muted);
-      margin-bottom: var(--global-spacing-md);
-      font-weight: 600;
-    }
-
-    .token-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: var(--global-spacing-md);
-    }
-
-    .token-swatch {
-      aspect-ratio: 1;
-      border-radius: var(--global-radius-lg);
-      background: var(--global-colors-surface);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: var(--global-spacing-md);
-      transition: transform 0.2s;
-    }
-
-    .token-swatch:hover {
-      transform: scale(1.02);
-    }
-
-    .token-swatch.color .preview {
-      width: 100%;
-      flex: 1;
-      border-radius: var(--global-radius-md);
-      min-height: 60px;
-    }
-
-    .token-swatch .name {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--global-colors-text-muted);
-      margin-top: var(--global-spacing-sm);
-      word-break: break-all;
-      text-align: center;
-    }
-
-    .token-swatch .value {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--global-colors-text-muted);
-      opacity: 0.8;
-    }
-
-    .btn-demo {
+    .btn {
       display: inline-block;
-      padding: var(--global-spacing-sm) var(--global-spacing-lg);
-      background: var(--global-colors-primary);
-      color: white;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: var(--button-primary-background);
+      color: var(--button-primary-text);
       border: none;
-      border-radius: var(--global-radius-md);
+      border-radius: var(--button-border-radius);
       font-family: inherit;
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: inherit;
+      font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s;
     }
 
-    .btn-demo:hover {
-      background: var(--global-colors-secondary);
+    .card {
+      margin-top: var(--spacing-xl);
+      padding: var(--card-padding);
+      background: var(--card-background);
+      border-radius: var(--card-border-radius);
+      box-shadow: var(--box-shadow-default);
     }
 
-    .card-demo {
-      background: var(--global-colors-surface);
-      padding: var(--global-spacing-lg);
-      border-radius: var(--global-radius-lg);
-      margin-top: var(--global-spacing-md);
+    .card p {
+      margin-bottom: 0;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Design Tokens</h1>
-      <p class="subtitle">Figma + Tokens Studio → GitHub → Style Dictionary → Web</p>
-      <div class="status" id="status">
-        <span class="status-dot"></span>
-        <span id="status-text">Cargando tokens...</span>
-      </div>
-    </header>
-
-    <section>
-      <h2>Colores</h2>
-      <div class="token-grid" id="colors-grid"></div>
-    </section>
-
-    <section>
-      <h2>Componentes de ejemplo</h2>
-      <button class="btn-demo">Botón con tokens</button>
-      <div class="card-demo">
-        <p>Esta tarjeta usa los colores y espaciados definidos en tus tokens.</p>
-      </div>
-    </section>
-
-    <section>
-      <h2>Style Dictionary — CSS generado</h2>
-      <p class="subtitle" style="margin-bottom: var(--global-spacing-md);">
-        tokens.json → @tokens-studio/sd-transforms → style-dictionary → css/variables.css
-      </p>
-      <details class="card-demo">
-        <summary style="cursor: pointer; font-weight: 600;">Ver variables.css</summary>
-        <pre id="css-output" style="margin-top: var(--global-spacing-md); overflow-x: auto; font-size: 0.8rem; white-space: pre-wrap;"></pre>
-      </details>
-    </section>
+  <div class="page">
+    <h1>Tokens desde Figma</h1>
+    <p>Página simple usando los tokens de tokensfigma/. Cambia los tokens en Figma, haz push, y la web se actualiza.</p>
+    <button class="btn">Botón</button>
+    <div class="card">
+      <p>Tarjeta con tokens de card (background, padding, border-radius, box-shadow).</p>
+    </div>
   </div>
-
-  <script>
-    const TOKENS_URL = './tokens.json';
-    const CSS_URL = './css/variables.css';
-
-    function renderColorSwatches(tokens) {
-      const colors = tokens?.global?.colors;
-      if (!colors) return;
-
-      const grid = document.getElementById('colors-grid');
-      grid.innerHTML = '';
-
-      function extractColors(obj, prefix = '') {
-        const result = [];
-        for (const [key, value] of Object.entries(obj)) {
-          const path = prefix ? `${prefix}.${key}` : key;
-          if (value?.value && (value?.type === 'color' || value?.value?.startsWith('#'))) {
-            result.push({ name: path, value: value.value });
-          } else if (value && typeof value === 'object' && !Array.isArray(value)) {
-            result.push(...extractColors(value, path));
-          }
-        }
-        return result;
-      }
-
-      const colorList = extractColors(colors);
-      colorList.forEach(({ name, value }) => {
-        const div = document.createElement('div');
-        div.className = 'token-swatch color';
-        div.innerHTML = `
-          <div class="preview" style="background: ${value}"></div>
-          <span class="name">${name}</span>
-          <span class="value">${value}</span>
-        `;
-        grid.appendChild(div);
-      });
-    }
-
-    async function loadTokens() {
-      const statusEl = document.getElementById('status-text');
-      try {
-        const [tokensRes, cssRes] = await Promise.all([
-          fetch(TOKENS_URL + '?t=' + Date.now()),
-          fetch(CSS_URL + '?t=' + Date.now())
-        ]);
-        if (!tokensRes.ok) throw new Error('No se pudo cargar tokens.json');
-        const tokens = await tokensRes.json();
-        renderColorSwatches(tokens);
-        statusEl.textContent = `Style Dictionary • Tokens y CSS cargados • ${new Date().toLocaleTimeString('es')}`;
-        if (cssRes.ok) {
-          const css = await cssRes.text();
-          document.getElementById('css-output').textContent = css;
-        }
-      } catch (err) {
-        statusEl.textContent = 'Error. Ejecuta "npm run build" para generar css/variables.css';
-        console.error(err);
-      }
-    }
-
-    loadTokens();
-  </script>
 </body>
 </html>
