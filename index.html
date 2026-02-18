@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tokens Figma</title>
+  <title>Tokens Figma — Guía pedagógica</title>
   <link rel="stylesheet" href="css/variables.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -15,25 +15,87 @@
       background: var(--bg-default);
       color: var(--fg-default);
       min-height: 100vh;
-      padding: var(--spacing-xl);
+      padding: var(--spacing-lg);
       line-height: var(--line-heights-body);
     }
 
     .page {
-      max-width: 480px;
+      max-width: 560px;
       margin: 0 auto;
     }
 
-    h1 {
+    .intro {
+      margin-bottom: var(--spacing-xl);
+      padding-bottom: var(--spacing-lg);
+      border-bottom: 1px solid var(--fg-subtle);
+    }
+
+    .intro h1 {
       font-family: var(--font-families-heading), sans-serif;
       font-size: var(--font-sizes-h2);
       font-weight: var(--font-weights-heading-bold);
-      margin-bottom: var(--spacing-md);
+      margin-bottom: var(--spacing-sm);
     }
 
-    p {
+    .intro p {
       color: var(--fg-muted);
-      margin-bottom: var(--spacing-lg);
+      font-size: var(--font-sizes-sm);
+    }
+
+    /* Bloque pedagógico: token encima del elemento */
+    .token-block {
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .token-label {
+      font-family: 'Roboto Mono', 'Consolas', monospace;
+      font-size: 11px;
+      color: var(--fg-subtle);
+      margin-bottom: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .token-label .studio {
+      color: var(--accent-default);
+      font-weight: 600;
+    }
+
+    .token-label .arrow {
+      color: var(--fg-subtle);
+      font-size: 10px;
+      opacity: 0.8;
+    }
+
+    .token-label .css {
+      color: var(--fg-muted);
+    }
+
+    .token-label .value {
+      color: var(--fg-subtle);
+      font-size: 10px;
+    }
+
+    .token-element {
+      padding: var(--spacing-md);
+      background: var(--bg-subtle);
+      border-radius: var(--border-radius-sm);
+      border-left: 3px solid var(--accent-default);
+    }
+
+    /* Elementos de ejemplo */
+    .demo-title {
+      font-family: var(--font-families-heading), sans-serif;
+      font-size: var(--font-sizes-h3);
+      font-weight: var(--font-weights-heading-bold);
+      color: var(--fg-default);
+    }
+
+    .demo-text {
+      color: var(--fg-muted);
+      font-size: var(--font-sizes-body);
+      margin-top: var(--spacing-sm);
     }
 
     .btn {
@@ -44,13 +106,13 @@
       border: none;
       border-radius: var(--button-border-radius);
       font-family: inherit;
-      font-size: inherit;
+      font-size: var(--font-sizes-body);
       font-weight: 700;
       cursor: pointer;
+      margin-top: var(--spacing-sm);
     }
 
     .card {
-      margin-top: var(--spacing-xl);
       padding: var(--card-padding);
       background: var(--card-background);
       border-radius: var(--card-border-radius);
@@ -58,18 +120,131 @@
     }
 
     .card p {
-      margin-bottom: 0;
+      color: var(--fg-default);
+      margin: 0;
+    }
+
+    .color-swatch {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--border-radius-sm);
+      margin-top: var(--spacing-sm);
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <h1>Tokens desde Figma</h1>
-    <p>Página simple usando los tokens de tokensfigma/. Cambia los tokens en Figma, haz push, y la web se actualiza.</p>
-    <button class="btn">Botón</button>
-    <div class="card">
-      <p>Tarjeta con tokens de card (background, padding, border-radius, box-shadow).</p>
+    <div class="intro">
+      <h1>Tokens Figma → Style Dictionary</h1>
+      <p>Cada elemento muestra el token encima: cómo se llama en Tokens Studio y cómo Style Dictionary lo transforma a CSS.</p>
+    </div>
+
+    <!-- Fondo de página -->
+    <div class="token-block">
+      <div class="token-label">
+        <span class="studio">light.json → bg.default</span>
+        <span class="arrow">↓ Style Dictionary (kebab-case)</span>
+        <span class="css">var(--bg-default)</span>
+        <span class="value" id="val-bg-default"></span>
+      </div>
+      <div class="token-element">
+        <span class="demo-title">Fondo de la página</span>
+        <p class="demo-text">Este color viene de bg.default (light theme).</p>
+      </div>
+    </div>
+
+    <!-- Título -->
+    <div class="token-block">
+      <div class="token-label">
+        <span class="studio">core.json → fontFamilies.heading, fontSizes.h2, fontWeights.headingBold</span>
+        <span class="arrow">↓</span>
+        <span class="css">var(--font-families-heading), var(--font-sizes-h2), var(--font-weights-heading-bold)</span>
+      </div>
+      <div class="token-element">
+        <span class="demo-title">Título H2</span>
+      </div>
+    </div>
+
+    <!-- Texto muted -->
+    <div class="token-block">
+      <div class="token-label">
+        <span class="studio">light.json → fg.muted</span>
+        <span class="arrow">↓</span>
+        <span class="css">var(--fg-muted)</span>
+        <span class="value" id="val-fg-muted"></span>
+      </div>
+      <div class="token-element">
+        <p class="demo-text">Texto secundario. Busca "fg" en Tokens Studio → light.</p>
+      </div>
+    </div>
+
+    <!-- Botón -->
+    <div class="token-block">
+      <div class="token-label">
+        <span class="studio">theme.json → button.primary.background, button.primary.text</span>
+        <span class="arrow">↓</span>
+        <span class="css">var(--button-primary-background), var(--button-primary-text)</span>
+        <span class="value" id="val-btn"></span>
+      </div>
+      <div class="token-element">
+        <button class="btn">Botón primario</button>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="token-block">
+      <div class="token-label">
+        <span class="studio">theme.json → card.background, card.padding, card.borderRadius, boxShadow.default</span>
+        <span class="arrow">↓</span>
+        <span class="css">var(--card-background), var(--card-padding), var(--card-border-radius), var(--box-shadow-default)</span>
+      </div>
+      <div class="token-element">
+        <div class="card">
+          <p>Tarjeta. En Tokens Studio: theme.json → card.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color accent -->
+    <div class="token-block">
+      <div class="token-label">
+        <span class="studio">light.json → accent.default</span>
+        <span class="arrow">↓ (referencia a colors.indigo.400)</span>
+        <span class="css">var(--accent-default)</span>
+        <span class="value" id="val-accent"></span>
+      </div>
+      <div class="token-element">
+        <div class="color-swatch" style="background: var(--accent-default);"></div>
+        <p class="demo-text" style="margin-top: 8px;">Color de acento. Cambia accent.default en light.json y verás el cambio.</p>
+      </div>
+    </div>
+
+    <!-- Spacing -->
+    <div class="token-block">
+      <div class="token-label">
+        <span class="studio">core.json → spacing.md, spacing.lg</span>
+        <span class="arrow">↓ (dimension.xs × scale²)</span>
+        <span class="css">var(--spacing-md), var(--spacing-lg)</span>
+        <span class="value" id="val-spacing"></span>
+      </div>
+      <div class="token-element">
+        <p class="demo-text">Los espaciados usan dimension.scale (2). spacing.md = 16px.</p>
+      </div>
     </div>
   </div>
+
+  <script>
+    // Mostrar valores computados para que vean el resultado de Style Dictionary
+    const root = getComputedStyle(document.documentElement);
+    const show = (id, varName) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = '→ ' + root.getPropertyValue(varName).trim();
+    };
+    show('val-bg-default', '--bg-default');
+    show('val-fg-muted', '--fg-muted');
+    show('val-accent', '--accent-default');
+    show('val-btn', '--button-primary-background');
+    show('val-spacing', '--spacing-md');
+  </script>
 </body>
 </html>
