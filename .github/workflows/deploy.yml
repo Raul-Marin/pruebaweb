@@ -38,6 +38,9 @@ jobs:
       - name: Build tokens (Style Dictionary)
         run: npm run build
 
+      - name: Cache bust CSS
+        run: sed -i 's|href="css/variables.css"|href="css/variables.css?v=${{ github.sha }}"|' index.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 

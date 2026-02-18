@@ -6,7 +6,9 @@ Figma (Tokens Studio) → Push → GitHub → Style Dictionary → GitHub Pages
 
 1. **Plugins → Tokens Studio** → Settings → Sync
 2. Añade **GitHub** como proveedor
-3. Configura la ruta: **`tokens`** (carpeta en la raíz)
+3. Configura la ruta:
+   - **Carpeta:** `tokens` (multi-file)
+   - **O archivo:** `tokens.json` (single-file)
 4. Push cuando cambies tokens
 
 ## Estructura
