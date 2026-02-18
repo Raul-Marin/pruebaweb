@@ -3,7 +3,7 @@
     "primary": {
       "background": {
         "$type": "color",
-        "$value": "{accent.default}"
+        "$value": "{colors.purple.500}"
       },
       "text": {
         "$type": "color",
