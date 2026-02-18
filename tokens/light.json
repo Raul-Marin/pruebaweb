@@ -16,7 +16,7 @@
   "bg": {
     "default": {
       "$type": "color",
-      "$value": "{colors.green.100}"
+      "$value": "{colors.orange.300}"
     },
     "muted": {
       "$type": "color",
