@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 /**
- * Build tokens: tokens.json → Style Dictionary → css/variables.css
- * Usa @tokens-studio/sd-transforms para procesar el formato de Tokens Studio
+ * Build: tokens/ → Style Dictionary → css/variables.css
  */
 import { register } from '@tokens-studio/sd-transforms';
 import StyleDictionary from 'style-dictionary';
@@ -10,9 +9,9 @@ register(StyleDictionary);
 
 const sd = new StyleDictionary({
   source: [
-    'tokensfigma/core.json',
-    'tokensfigma/light.json',
-    'tokensfigma/theme.json',
+    'tokens/core.json',
+    'tokens/light.json',
+    'tokens/theme.json',
   ],
   preprocessors: ['tokens-studio'],
   platforms: {
