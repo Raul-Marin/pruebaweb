@@ -564,7 +564,7 @@
     },
     "body": {
       "$type": "fontSizes",
-      "$value": "16"
+      "$value": "20"
     },
     "sm": {
       "$type": "fontSizes",
